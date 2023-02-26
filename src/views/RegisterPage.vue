@@ -6,32 +6,67 @@
       </ion-text>
       <ion-item>
         <ion-label position="floating">Nombre</ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input v-model="name" type="text"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Email</ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input v-model="email" type="email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-label position="floating">Contraseña</ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input v-model="password" type="password"></ion-input>
       </ion-item>
-      <div style="padding: 50px 0"><ion-button expand="block">Registrar</ion-button></div>
+      <div style="padding: 50px 0"><ion-button @click="register" expand="block">Registrar</ion-button></div>
     </ion-list>
   </div>
 </template>
 
 <script>
 import {defineComponent} from "vue";
+import AuthService from "@/service/AuthService";
+import router from "@/router";
+import {
+  IonText,
+  IonLabel,
+  IonInput,
+  IonItem,
+  IonButton,
+  IonList
+} from '@ionic/vue';
 
 export default defineComponent({
   name: 'RegisterPage',
-  components: {},
+  components: {
+    IonText,
+    IonLabel,
+    IonInput,
+    IonItem,
+    IonButton,
+    IonList
+  },
+  authService: null,
+  created() {
+    this.authService = new AuthService();
+  },
   data() {
     return {
+      name: null,
+      email: null,
+      password: null
     }
   },
   methods: {
+    register() {
+      const payload = {name: this.name,email: this.email, password: this.password};
+      this.authService.register(payload).then((data) => {
+        const {accessToken,...user} = data
+        if (accessToken) {
+          localStorage.setItem('token', accessToken)
+          localStorage.setItem('user', JSON.stringify(user))
+          router.push({name: 'tasks'})
+        }
+      });
+    }
   }
 });
 </script>

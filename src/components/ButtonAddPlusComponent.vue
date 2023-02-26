@@ -54,8 +54,7 @@ export default defineComponent({
   },
   methods: {
     saveTask() {
-      const userId = 1;
-      const payload = {title: this.task, description: '',userId:userId};
+      const payload = {title: this.task, description: ''};
       this.taskService.create(payload).then((data) => {
         this.$emit('dato-enviado', data);
         this.task = ''

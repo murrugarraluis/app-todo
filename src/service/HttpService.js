@@ -48,7 +48,6 @@ export default class HttpService {
     }
 
 
-
     async delete(uri, id) {
         return await httpService(`${apiHost}/${uri}/${id}`, {
             method: 'DELETE',
@@ -78,10 +77,11 @@ function httpService(url, options) {
 
 function updateOptions(options) {
     const update = {...options};
+    const token = localStorage.getItem('token');
     update.headers = {
         ...update.headers,
         'Accept': 'application/json',
-        'Authorization': localStorage.getItem('token') ? `Bearer ${localStorage.getItem('token')}` : null,
+        'Authorization': token ? `Bearer ${token}` : null,
     };
     return update
 }

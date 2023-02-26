@@ -2,6 +2,9 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
+        <ion-buttons slot="start">
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
         <ion-title>List Task</ion-title>
       </ion-toolbar>
     </ion-header>
@@ -13,14 +16,24 @@
 </template>
 
 <script>
-import {IonPage, IonHeader, IonToolbar, IonContent, IonTitle} from '@ionic/vue';
+import {IonPage, IonHeader, IonToolbar, IonContent, IonTitle, IonMenuButton, IonButtons} from '@ionic/vue';
 import TaskListsComponent from '@/components/TaskListsComponent.vue'
 import ButtonAddPlusComponent from '@/components/ButtonAddPlusComponent.vue'
 import {defineComponent} from "vue";
 
 export default defineComponent({
   name: 'TaskPage',
-  components: {IonPage, IonHeader, IonToolbar, IonContent, IonTitle, TaskListsComponent, ButtonAddPlusComponent},
+  components: {
+    IonPage,
+    IonHeader,
+    IonToolbar,
+    IonContent,
+    IonTitle,
+    IonMenuButton,
+    IonButtons,
+    TaskListsComponent,
+    ButtonAddPlusComponent
+  },
   data() {
     return {
       datoRecibido: ''

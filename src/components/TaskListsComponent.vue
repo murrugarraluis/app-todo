@@ -25,7 +25,7 @@ export default defineComponent({
   },
   mounted() {
     this.taskService.getAll().then((data) => {
-      this.tasks = data
+        this.tasks = data
     });
   },
   data() {

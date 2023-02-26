@@ -1,5 +1,5 @@
 // const apiHost = `${process.env.VUE_APP_API_HOST}/api/v1`
-const apiHost = 'http://localhost:3000/api/v1'
+const apiHost = 'https://api-todo-production.up.railway.app/api/v1'
 
 export default class HttpService {
 
